@@ -30,3 +30,20 @@ function createEmployeeCard(name, position) {
     //Append elements
     document.getElementById('employeeContainer').appendChild(card);
 } //Append employee card to container
+
+
+// Task 3 Converting NodeLists to Arrays for Bulk Updates
+
+function bulkUpdateEmployeeCards() {
+    const cards = document.querySelectorAll('.employee-card');
+    const cardArray = Array.from(cards);
+
+    cardArray.forEach(card => {
+        card.style.backgroundColor = 'lightblue';
+    }); // function for bulk updating to cards
+}
+
+// activating bulk update function
+bulkUpdateEmployeeCards();
+
+//
