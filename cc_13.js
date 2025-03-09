@@ -19,9 +19,12 @@ function createEmployeeCard(name, position) {
     removeBtn.textContent = "Remove";
     //Create remove button
 
-    removeBtn.addEventListener("click", function () {
-        divEmpContainer.removeChild(employeeCard);
-    });
+    removeBtn.addEventListener("click", function(event) {
+        console.log('Remove button has been clicked');
+        event.stopPropagation();
+        card.remove();
+    });  //Task 4
+
     //Add event listner to remove the employee card
 
     employeeCard.appendChild(heading);
@@ -46,4 +49,7 @@ function bulkUpdateEmployeeCards() {
 // activating bulk update function
 bulkUpdateEmployeeCards();
 
-//
+// Task 5: Inline Editing of Employee Details
+
+
+
