@@ -1,94 +1,85 @@
 // Task 2: Adding Employee Cards Dynamically
 
-function addEmployeeCard(name, position) {
-// main employee card container
+function createEmployeeCard(name, position) { 
+
+    const employeeContainer = document.getElementById('employeeContainer');
+
     const card = document.createElement('div');
-    card.setAttribute('class', 'employee-card'); //Set class attribute
-    
-    const heading = document.createElement('h3'); //Add heading for employee's name
+    card.setAttribute(`class`, `employee-card`); //Setting attributes 
+
+    const heading = document.createElement('h3'); //Add heading as employee name
     heading.textContent = name;
-    
-    const paragraph = document.createElement('h3'); //Add paragragh for employee's position
+
+    const paragraph = document.createElement('p'); //Adding paragraph as Employee postition
     paragraph.textContent = position;
-    
+
     const removeButton = document.createElement('button'); //Add remove button
     removeButton.textContent = 'Remove';
+
+    const editButton = document.createElement('button'); //Add edit button for task 5
+    editButton.textContent = 'Edit Employee Card'
+
+    // Task 5 Modifications
+
+    editButton.addEventListener('click', (event) => {
     
-    const editButton = document.createElement('button'); //Add edit button for Task 5
-    editButton.textContent = 'Edit';
+        const nameInput = document.createElement('input'); // create an input field for employee name when edit button is clicked
+        nameInput.value = heading.textContent;
+    
+        const positionInput = document.createElement('input'); // create an input field for employee position when edit button is clicked
+        positionInput.value = paragraph.textContent;
+    
+        const saveButton = document.createElement('button'); // Create save button when edit employee card is clicked
+        saveButton.textContent = 'Save Changes';
+    
+        saveButton.addEventListener('click', (event) => { // Adding an event listener to the save button
+            heading.textContent = nameInput.value;
+            paragraph.textContent = positionInput.value;
+            card.removeChild(saveButton) // remove save button when save chnages is clicked
+            card.removeChild(positionInput) // remove position input field when save changes is clicked
+            card.removeChild(nameInput); // remove name input field when save changes is clicked
+    })
+
+    card.appendChild(nameInput); // appending name input
+    card.appendChild(positionInput); // appending position input
+    card.appendChild(saveButton); // appending the save button
+    
+    })
+
+    //Task 4 additions
+    card.addEventListener('click', event => {
+        console.log(heading.textContent, "Employee card clicked")
+    })
+
+    removeButton.addEventListener('click', (event) => {
+        card.remove(); // Adding an event listener to remove an employee card when it is clicked
+
+        console.log('Employee Card Removed.'); // Log to console everytime remove button is clicked for an employee card
+    
+
+        event.stopPropagation(); // Prevent the clicks from effecting the parent container
+    }); 
     
     // appending elements to the card
     card.appendChild(heading);
     card.appendChild(paragraph);
     card.appendChild(editButton);
     card.appendChild(removeButton);
-    
-    // appending card to employee container
-    document.getElementById('employeeContainer').appendChild(card);
-    
-    // remove functionality
-    removeButton.addEventListener('click', function(event) {
-        // Task 4 Addition
-        console.log('Remove button has been clicked');
-        event.stopPropagation();  //prevent the event from bubbling up
-        card.remove();
-    });
 
+    employeeContainer.appendChild(card); // appending the employee card
 
-// Task 5 Inline Editing of Employee Details
-
-//Add an event listener to each employee card
-editButton.addEventListener('click', function() {
-    const nameInput = document.createElement('input');  //Pre-populate the input fields with the existing employee name
-    nameInput.value = heading.textContent;
-
-    const positionInput = document.createElement('input');  //Pre-populate the input fields with the existing employee posiiton
-    positionInput.value = paragraph.textContent;
-
-    const saveButton = document.createElement('button');
-    saveButton.textContent = 'Save';  //updates the employee card with the new values
-    card.appendChild(positionInput);
-    
-    // appending new functions
-    card.innerHTML = '';
-    card.appendChild(nameInput);
-    card.appendChild(position);
-    card.appendChild(saveButton);
-    card.appendChild(removeButton);
-
-    // save button listener
-    saveButton.addEventListener('click', function() {
-        heading.textContent = nameInput.value;
-        paragraph.textContent = positionInput.value;
-
-        card.innerHTML = '';
-        card.appendChild(heading);
-        card.appendChild(paragraph);
-        card.appendChild(editButton);
-        card.appendChild(removeButton);
-    }); // event listener for save button and inner text 
-});
 }
-
-// Test example employees
-addEmployeeCard('Annabelle', 'Manager');      //employee card info
-addEmployeeCard('Ariana', 'Sales Associate');
-addEmployeeCard('Karen', 'General Manager')
-
 // Task 3 Converting NodeLists to Arrays for Bulk Updates
 
-function bulkUpdateEmployeeCards() {
-    const cards = document.querySelectorAll('.employee-card');
-    const cardArray = Array.from(cards);
+const cards = document.querySelectorAll('.employee-card'); // Used query selectorAll to select all employee cards
+const cardArray = [...cards]; // Converting Nodelist to an array
 
-    cardArray.forEach(card => {
-        card.style.backgroundColor = 'lightblue';
-    }); // function for bulk updating to cards
-}
+cardArray.forEach(card => {
+card.style.backgroundColor = 'orange'; // Updated the employee cards to be orange
+    });
 
-// activating bulk update function
-bulkUpdateEmployeeCards();
-
-
-
-
+ // Test example employees
+addEmployeeCard('Annabelle', 'Manager');      //employee card info
+addEmployeeCard('Ariana', 'Sales Associate');
+addEmployeeCard('Karen', 'General Manager')   
+    
