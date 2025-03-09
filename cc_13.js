@@ -67,7 +67,7 @@ function addEmployeeCard(name, position) {
             card.appendChild(removeButton);
         }); // event listener for save button and inner text appending
     });
-}
+}    
 
  // Test example employees
 addEmployeeCard('Annabelle', 'Manager');      //employee card info
@@ -80,7 +80,7 @@ function bulkUpdateEmployeeCards() {
     const cardArray = Array.from(cards);
 
     cardArray.forEach(card => {
-        card.style.backgroundColor = 'lightgreen';
+        card.style.backgroundColor = 'lightblue';
     }); // function for bulk updating to cards
 }
 
