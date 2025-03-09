@@ -14,7 +14,7 @@ function addEmployeeCard(name, position) {
     const removeButton = document.createElement('button'); //Add remove button
     removeButton.textContent = 'Remove';
     
-    const editButton = document.createElement('button'); //Add edit button - task 5
+    const editButton = document.createElement('button'); //Add edit button for Task 5
     editButton.textContent = 'Edit';
     
     // appending elements to the card
@@ -28,15 +28,16 @@ function addEmployeeCard(name, position) {
     
     // remove functionality
     removeButton.addEventListener('click', function(event) {
-        // task 4
+        // Task 4 Addition
         console.log('Remove button has been clicked');
-        event.stopPropagation();
+        event.stopPropagation();  //prevent the event from bubbling up
         card.remove();
     });
 
 
 // Task 5 Inline Editing of Employee Details
 
+//Add an event listener to each employee card
 editButton.addEventListener('click', function() {
     const nameInput = document.createElement('input');
     nameInput.value = heading.textContent;
@@ -65,7 +66,7 @@ editButton.addEventListener('click', function() {
         card.appendChild(paragraph);
         card.appendChild(editButton);
         card.appendChild(removeButton);
-    }); // event listener for save button and inner text appending
+    }); // event listener for save button and inner text 
 });
 }
 
