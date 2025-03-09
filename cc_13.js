@@ -15,25 +15,68 @@ function createEmployeeCard(name, position) {
     paragraph.textContent = position;
     //Create paragraph for employee position
 
-    const removeBtn = document.createElement("button");
-    removeBtn.textContent = "Remove";
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Remove";
     //Create remove button
 
-    removeBtn.addEventListener("click", function(event) {
-        console.log('Remove button has been clicked');
-        event.stopPropagation();
-        card.remove();
-    });  //Task 4
+    const editButton = document.createElement('button'); //Adding edit button -Task 5
+    editButton.textContent = 'Edit';
 
-    //Add event listner to remove the employee card
+    //Add event listener to remove the employee card
 
     employeeCard.appendChild(heading);
     employeeCard.appendChild(paragraph);
-    employeeCard.appendChild(removeBtn);
+    employeeCard.appendChild(removeButton);
+    employeeCard.appendChild(editButton);
+
     //Append elements
     document.getElementById('employeeContainer').appendChild(card);
 } //Append employee card to container
 
+removeButton.addEventListener("click", function(event) {
+    console.log('Remove button has been clicked');
+    event.stopPropagation();
+    card.remove();
+});  //Task 4
+
+// Task 5 Inline Editing of Employee Details
+
+editButton.addEventListener('click', function() {
+    const nameInput = document.createElement('input');
+    nameInput.value = heading.textContent;
+
+    const positionInput = document.createElement('input');
+    positionInput.value = paragraph.textContent;
+
+    const saveButton = document.createElement('button');
+    saveButton.textContent = 'Save';
+    card.appendChild(positionInput);
+    
+    // appending new functions
+    card.innerHTML = '';
+    card.appendChild(nameInput);
+    card.appendChild(position);
+    card.appendChild(saveButton);
+    card.appendChild(removeButton);
+
+    // save button listener
+    saveButton.addEventListener('click', function() {
+        heading.textContent = nameInput.value;
+        paragraph.textContent = positionInput.value;
+
+        card.innerHTML = '';
+        card.appendChild(heading);
+        card.appendChild(paragraph);
+        card.appendChild(editButton);
+        card.appendChild(removeButton);
+    }); // event listener for save button and inner text appending
+});
+}
+
+// Test example employees
+addEmployeeCard('Annabelle', 'Manager');
+addEmployeeCard('Ariana', 'Sales Associate');
+addEmployeeCard('Karen', 'General Manager')
 
 // Task 3 Converting NodeLists to Arrays for Bulk Updates
 
@@ -49,7 +92,6 @@ function bulkUpdateEmployeeCards() {
 // activating bulk update function
 bulkUpdateEmployeeCards();
 
-// Task 5: Inline Editing of Employee Details
 
 
 
