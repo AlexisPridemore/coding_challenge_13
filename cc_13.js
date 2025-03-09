@@ -39,14 +39,14 @@ function addEmployeeCard(name, position) {
 
 //Add an event listener to each employee card
 editButton.addEventListener('click', function() {
-    const nameInput = document.createElement('input');
+    const nameInput = document.createElement('input');  //Pre-populate the input fields with the existing employee name
     nameInput.value = heading.textContent;
 
-    const positionInput = document.createElement('input');
+    const positionInput = document.createElement('input');  //Pre-populate the input fields with the existing employee posiiton
     positionInput.value = paragraph.textContent;
 
     const saveButton = document.createElement('button');
-    saveButton.textContent = 'Save';
+    saveButton.textContent = 'Save';  //updates the employee card with the new values
     card.appendChild(positionInput);
     
     // appending new functions
