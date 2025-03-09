@@ -51,7 +51,7 @@ function addEmployeeCard(name, position) {
         //Appending new functions
         card.innerHTML = '';
         card.appendChild(nameInput);
-        card.appendChild(position);
+        card.appendChild(positionInput);
         card.appendChild(saveButton);
         card.appendChild(removeButton);
 
