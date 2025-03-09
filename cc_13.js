@@ -1,43 +1,39 @@
 // Task 2: Adding Employee Cards Dynamically
 
-function createEmployeeCard(name, position) {
-//main employee card container
-
-    const employeeCard = document.createElement('div');
-    employeeCard.setAttribute('class', 'employee-card');
-    //Build employee card
-
-    const heading = document.createElement("h2");
+function addEmployeeCard(name, position) {
+// main employee card container
+    const card = document.createElement('div');
+    card.setAttribute('class', 'employee-card'); //Set class attribute
+    
+    const heading = document.createElement('h3'); //Add heading for employee's name
     heading.textContent = name;
-    //Create heading for employee name
-
-    const paragraph = document.createElement("h2");
+    
+    const paragraph = document.createElement('h3'); //Add paragragh for employee's position
     paragraph.textContent = position;
-    //Create paragraph for employee position
-
-    const removeButton = document.createElement("button");
-    removeButton.textContent = "Remove";
-    //Create remove button
-
-    const editButton = document.createElement('button'); //Adding edit button -Task 5
+    
+    const removeButton = document.createElement('button'); //Add remove button
+    removeButton.textContent = 'Remove';
+    
+    const editButton = document.createElement('button'); //Add edit button - task 5
     editButton.textContent = 'Edit';
-
-    //Add event listener to remove the employee card
-
-    employeeCard.appendChild(heading);
-    employeeCard.appendChild(paragraph);
-    employeeCard.appendChild(removeButton);
-    employeeCard.appendChild(editButton);
-
-    //Append elements
+    
+    // appending elements to the card
+    card.appendChild(heading);
+    card.appendChild(paragraph);
+    card.appendChild(editButton);
+    card.appendChild(removeButton);
+    
+    // appending card to employee container
     document.getElementById('employeeContainer').appendChild(card);
-} //Append employee card to container
+    
+    // remove functionality
+    removeButton.addEventListener('click', function(event) {
+        // task 4
+        console.log('Remove button has been clicked');
+        event.stopPropagation();
+        card.remove();
+    });
 
-removeButton.addEventListener("click", function(event) {
-    console.log('Remove button has been clicked');
-    event.stopPropagation();
-    card.remove();
-});  //Task 4
 
 // Task 5 Inline Editing of Employee Details
 
@@ -74,7 +70,7 @@ editButton.addEventListener('click', function() {
 }
 
 // Test example employees
-addEmployeeCard('Annabelle', 'Manager');
+addEmployeeCard('Annabelle', 'Manager');      //employee card info
 addEmployeeCard('Ariana', 'Sales Associate');
 addEmployeeCard('Karen', 'General Manager')
 
